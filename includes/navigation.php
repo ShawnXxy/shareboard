@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <?php
-                        $sql = "SELECT * FROM {$table_name};";
+                        $sql = "SELECT * FROM {$table_cat};";
                         $query = mysqli_query($con, $sql);
 
                         while($row = mysqli_fetch_assoc($query)) {
@@ -27,15 +27,6 @@
                             echo "<li><a href='#'>{$cat_title}</a></li>";
                         }
                     ?>
-                    <!-- <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li> -->
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
