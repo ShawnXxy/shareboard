@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     include "../includes/config.php";
 ?>
 <!DOCTYPE html>
