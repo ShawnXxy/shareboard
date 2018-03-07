@@ -1,7 +1,12 @@
 <?php
+    // database setting and connections
+    include "../includes/config.php"; 
+    // functions defined
+    include "../functions.php";
+
     ob_start();
-    include "../includes/config.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
