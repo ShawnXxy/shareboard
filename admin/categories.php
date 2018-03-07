@@ -31,7 +31,7 @@
                                 <input class="form-control" type="text" name="cat_title" required>
                             </div>
                             <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name="submit" value="Add">
+                                <input class="btn btn-success" type="submit" name="submit" value="Add">
                             </div>                          
                         </form>
 
@@ -51,7 +51,7 @@
                             </thead>
                             <tbody>
                                 <!-- loading category data from db -->
-                                <?php query_cat(); ?>
+                                <?php load_cat(); ?>
                                 <!-- DELETE category -->
                                 <?php delete_cat(); ?>
                             </tbody>
@@ -60,7 +60,7 @@
                     
                     <!-- <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-file"></i> Blank Page
