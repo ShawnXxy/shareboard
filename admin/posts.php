@@ -31,13 +31,14 @@
                             case 'add_post';
                                 include "includes/addpost.php";
                                 break;
+                            case 'edit_post';
+                                include "includes/edit.php";
+                                break;
                             default:
                                 include 'includes/allposts.php';
                                 break;
                         }
-
                     ?>
-                    
                 </div>
             </div>
             <!-- /.row -->

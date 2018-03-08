@@ -8,7 +8,6 @@
             <th>Status</th>
             <th>Image</th>
             <th>Tags</th>
-            <th>Views</th>
             <th>Comments</th>
             <th>Date</th>
         </tr>

@@ -63,7 +63,10 @@
 
             if (isset($_POST['edit'])) {
                 $edit_cat_title = $_POST['cat_title'];
-                $sql = "UPDATE {$table_cat} SET cat_title = '{$edit_cat_title}' WHERE cat_id = {$cat_id};";
+                $sql = "UPDATE {$table_cat} SET 
+                    cat_title = '{$edit_cat_title}' 
+                    WHERE cat_id = {$cat_id};
+                    ";
                 $query = mysqli_query($con, $sql);
                 if (!$query) {
                     die("Query Failed!" . mysqli_error($con));
@@ -93,8 +96,9 @@
     function load_posts() {
         global $con;
         global $table_posts;
+        global $table_cat;
 
-        $sql = "SELECT * FROM {$table_posts};";
+        $sql = "SELECT * FROM {$table_posts} ORDER BY post_date DESC;";
         $query = mysqli_query($con, $sql);
 
         while ($row = mysqli_fetch_assoc($query)) {
@@ -105,7 +109,7 @@
             $post_status = $row['post_status'];
             $post_img = $row['post_img'];
             $post_tags = $row['post_tags'];
-            $post_views_count = $row['post_views_count'];
+            // $post_views_count = $row['post_views_count'];
             $post_comment_count = $row['post_comment_count'];
             $post_date = $row['post_date'];
 
@@ -113,17 +117,26 @@
             echo "<td>{$post_id}</td>";
             echo "<td>{$post_author}</td>";
             echo "<td>{$post_title}</td>";
-            echo "<td>{$post_cat_id}</td>";
+
+            // Combine cat_id to display category
+            $sql_get_cat = "SELECT * FROM {$table_cat} WHERE cat_id = {$post_cat_id};";
+            $query_get_cat = mysqli_query($con, $sql_get_cat);
+            while ($row = mysqli_fetch_assoc($query_get_cat)) {
+                $cat_id = $row['cat_id'];
+                $cat_title = $row['cat_title'];
+                echo "<td>{$cat_title}</td>";
+            }
+            
             echo "<td>{$post_status}</td>";
-            echo "<td><img class='img-responsive' src='../images/$post_img' alt='test-image'></td>";
+            echo "<td><img class='img-responsive' src='../images/$post_img' alt='test-image' width='100' height='100'></td>";
             echo "<td>{$post_tags}</td>";
-            echo "<td>{$post_views_count}</td>";
+            // echo "<td>{$post_views_count}</td>";
             echo "<td>{$post_comment_count}</td>";
             echo "<td>{$post_date}</td>";
             echo "
                 <td>
-                    <a href='posts.php?delete=$post_id' class='btn btn-primary'>Edit</a>
-                    <a href='posts.php?delete=$post_id' class='btn btn-danger'>Delete</a>
+                    <a href='posts.php?source=edit_post&post_id={$post_id}' class='btn btn-primary'>Edit</a>
+                    <a href='posts.php?delete={$post_id}' class='btn btn-danger'>Delete</a>
                 </td>
                 ";
             echo "</tr>";
@@ -135,8 +148,8 @@
         global $table_posts;
 
         if (isset($_POST['publish_post'])) {
-            $post_title = $_POST['post_title'];
-            $post_author = $_POST['post_author'];
+            $post_title = mysqli_real_escape_string($con, $_POST['post_title']);
+            $post_author = mysqli_real_escape_string($con, $_POST['post_author']);
             $post_cat_id = $_POST['post_cat_id'];
             $post_status = $_POST['post_status'];
     
@@ -145,12 +158,15 @@
             move_uploaded_file($post_img_temp, "../images/$post_img");
     
             $post_tags = $_POST['post_tags'];
-            $post_content = $_POST['post_content'];
+            $post_content = mysqli_real_escape_string($con, $_POST['post_content']);
             $post_date = date('d-m-y');
     
             $post_comment_count = 3;
     
-            $sql = "INSERT INTO {$table_posts}(post_cat_id, post_title, post_author, post_date, post_img, post_content, post_tags, post_comment_count, post_status) VALUES({$post_cat_id}, '{$post_title}', '{$post_author}', now(), '{$post_img}', '{$post_content}', '{$post_tags}', {$post_comment_count}, '{$post_status}');";
+            $sql = "INSERT INTO {$table_posts}
+                (post_cat_id, post_title, post_author, post_date, post_img, post_content, post_tags, post_comment_count, post_status) 
+                VALUES
+                ({$post_cat_id}, '{$post_title}', '{$post_author}', now(), '{$post_img}', '{$post_content}', '{$post_tags}', {$post_comment_count}, '{$post_status}');";
             $query = mysqli_query($con, $sql);
             if (!$query) {
                 die("Query failed!" . mysqli_error($con));

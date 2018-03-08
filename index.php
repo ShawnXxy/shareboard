@@ -12,15 +12,15 @@
             <div class="col-md-8">
 
                 <?php
-                    $sql = "SELECT * FROM {$table_posts};";
+                    $sql = "SELECT * FROM {$table_posts} ORDER BY post_date;";
                     $query = mysqli_query($con, $sql);
                     
                     while ($row = mysqli_fetch_assoc($query)) {
-                        $post_title = $row['post_title'];
-                        $post_author = $row['post_author'];
+                        $post_title = mysqli_real_escape_string($con, $row['post_title']);
+                        $post_author = mysqli_real_escape_string($con, $row['post_author']);
                         $post_date = $row['post_date'];
                         $post_img = $row['post_img'];
-                        $post_content = $row['post_content'];
+                        $post_content = mysqli_real_escape_string($con, $row['post_content']);
                         // $post_tags = $row['post_tags'];
                         // $post_comment_count = $row['post_comment_count'];
                         // $post_status = $row['post_status'];
