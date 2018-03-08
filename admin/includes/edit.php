@@ -14,7 +14,6 @@
         $post_author = $row['post_author'];
         $post_title = $row['post_title'];
         $post_cat_id = $row['post_cat_id'];
-        $post_status = $row['post_status'];
         $post_img = $row['post_img'];
         $post_content = $row['post_content'];
         $post_tags = $row['post_tags'];
@@ -27,7 +26,6 @@
         $post_author = mysqli_real_escape_string($con, $_POST['post_author']);
         $post_title = mysqli_real_escape_string($con, $_POST['post_title']);
         $post_cat_id = $_POST['post_cat_id'];
-        $post_status = $_POST['post_status'];
         $post_img = $_FILES['post_img']['name'];
         $post_img_temp = $_FILES['post_img']['tmp_name'];
         $post_tags = $_POST['post_tags'];
@@ -49,13 +47,14 @@
             post_date = now(), 
             post_content = '{$post_content}', 
             post_tags = '{$post_tags}', 
-            post_img = '{$post_img}',
-            post_status = '{$post_status}'
+            post_img = '{$post_img}'
             WHERE post_id = {$edit_post_id};
             ";
         $query_update_post = mysqli_query($con, $sql_update_post);
         if (!$query_update_post) {
             die('Query Failed ! ' . mysqli_error($con));
+        } else {
+            echo "<p class='bg-success'>Updated successfully!</p>";
         }
     }
 
@@ -84,11 +83,6 @@
     <div class="form-group">
         <label for="post_author">Post Author</label>
         <input type="text" class="form-control" name="post_author" value="<?php echo $post_author; ?>" required>
-    </div>
-
-    <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status" value="<?php echo $post_status; ?>">
     </div>
 
     <div class="form-group">

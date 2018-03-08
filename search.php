@@ -14,7 +14,10 @@
                 <?php
                     if (isset($_POST['submit'])) {
                         $search = $_POST['search'];
-                        $sql = "SELECT * FROM {$table_posts} WHERE post_tags LIKE '%$search%';";
+                        $sql = "SELECT * FROM {$table_posts} WHERE post_tags LIKE '%$search%'
+                            OR post_title LIKE '%$search%'
+                            OR post_author LIKE '%$search%'
+                            OR post_content LIKE '%$search%';";
                         $search_query = mysqli_query($con, $sql);
                         if (!$search_query) {
                             die("Query failed" . mysqli_error($con));
@@ -33,7 +36,6 @@
                                 $post_content = $row['post_content'];
                                 // $post_tags = $row['post_tags'];
                                 // $post_comment_count = $row['post_comment_count'];
-                                // $post_status = $row['post_status'];
                                 // $post_views_count = $row['post_views_count'];
                             ?>
                                 <h1 class="page-header">

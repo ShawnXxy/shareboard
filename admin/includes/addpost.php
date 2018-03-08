@@ -6,11 +6,6 @@
         <label for="post_title">Post Title</label>
         <input type="text" class="form-control" name="post_title" required>
     </div>
-
-    <!-- <div class="form-group">
-        <label for="post_cat_id">Post Category</label>
-        <input type="text" class="form-control" name="post_cat_id">
-    </div> -->
     
     <div class="form-group">
         <label for="post_cat">Category</label>
@@ -30,11 +25,6 @@
     <div class="form-group">
         <label for="post_author">Post Author</label>
         <input type="text" class="form-control" name="post_author" required>
-    </div>
-
-    <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status">
     </div>
 
     <div class="form-group">

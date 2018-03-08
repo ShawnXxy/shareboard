@@ -3,20 +3,18 @@
         <tr>
             <th>Id</th>
             <th>Author</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Image</th>
-            <th>Tags</th>
-            <th>Comments</th>
+            <th>Comment</th>
+            <th>Email</th>
+            <th>In Response to</th>
             <th>Date</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
         <!-- Posts data loading here -->
-        <?php load_posts(); ?>
+        <?php load_comments(); ?>
     </tbody>
 </table>
 
-<?php delete_post(); ?>
+<?php delete_comment(); ?>
     

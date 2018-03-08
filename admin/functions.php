@@ -1,6 +1,8 @@
 <?php
     /***************
+     * 
      *  Categories
+     * 
      *******************/
     function load_cat() {
         global $con;
@@ -34,6 +36,8 @@
                 $query = mysqli_query($con, $sql);
                 if (!$query) {
                     die('Query Failed!' . mysqli_error($con));
+                } else {
+                    echo "<p class='bg-success'>New category added!</p>";
                 }
             } 
         }
@@ -70,6 +74,8 @@
                 $query = mysqli_query($con, $sql);
                 if (!$query) {
                     die("Query Failed!" . mysqli_error($con));
+                } else {
+                    echo "<p class='bg-success'>Category updated successfully!</p>";
                 }
             }
         } // End of isset($_GET['edit']
@@ -91,7 +97,9 @@
     }
 
     /******************
+     * 
      * Post 
+     * 
      ********************/
     function load_posts() {
         global $con;
@@ -106,7 +114,6 @@
             $post_author = $row['post_author'];
             $post_title = $row['post_title'];
             $post_cat_id = $row['post_cat_id'];
-            $post_status = $row['post_status'];
             $post_img = $row['post_img'];
             $post_tags = $row['post_tags'];
             // $post_views_count = $row['post_views_count'];
@@ -127,7 +134,6 @@
                 echo "<td>{$cat_title}</td>";
             }
             
-            echo "<td>{$post_status}</td>";
             echo "<td><img class='img-responsive' src='../images/$post_img' alt='test-image' width='100' height='100'></td>";
             echo "<td>{$post_tags}</td>";
             // echo "<td>{$post_views_count}</td>";
@@ -151,7 +157,6 @@
             $post_title = mysqli_real_escape_string($con, $_POST['post_title']);
             $post_author = mysqli_real_escape_string($con, $_POST['post_author']);
             $post_cat_id = $_POST['post_cat_id'];
-            $post_status = $_POST['post_status'];
     
             $post_img = $_FILES['post_img']['name'];
             $post_img_temp = $_FILES['post_img']['tmp_name'];
@@ -161,17 +166,28 @@
             $post_content = mysqli_real_escape_string($con, $_POST['post_content']);
             $post_date = date('d-m-y');
     
-            $post_comment_count = 3;
-    
-            $sql = "INSERT INTO {$table_posts}
-                (post_cat_id, post_title, post_author, post_date, post_img, post_content, post_tags, post_comment_count, post_status) 
-                VALUES
-                ({$post_cat_id}, '{$post_title}', '{$post_author}', now(), '{$post_img}', '{$post_content}', '{$post_tags}', {$post_comment_count}, '{$post_status}');";
+            $sql = "INSERT INTO {$table_posts} (
+                post_cat_id, 
+                post_title, 
+                post_author, 
+                post_date, 
+                post_img, 
+                post_content, 
+                post_tags
+                ) VALUES (
+                    {$post_cat_id}, 
+                    '{$post_title}', 
+                    '{$post_author}', 
+                    now(), 
+                    '{$post_img}', 
+                    '{$post_content}', 
+                    '{$post_tags}'
+                    );";
             $query = mysqli_query($con, $sql);
             if (!$query) {
                 die("Query failed!" . mysqli_error($con));
             } else {
-                // echo "<p>Publish successfully!</p>";
+                echo "<p class='bg-success'>Publish successfully!</p>";
             }
             
         }
@@ -192,5 +208,68 @@
             }
         }
     }
+
+    /**************************
+     * 
+     *  COMMENTS
+     *
+     * ******************************/
+    function load_comments() {
+        global $con;
+        global $table_posts;
+        global $table_cat;
+        global $table_comments;
+
+        $sql = "SELECT * FROM {$table_comments} ORDER BY comment_date DESC;";
+        $query = mysqli_query($con, $sql);
+
+        while ($row = mysqli_fetch_assoc($query)) {
+            $comment_id = $row['comment_id'];
+            $comment_post_id = $row['comment_post_id'];
+            $comment_author = $row['comment_author'];
+            $comment_email = $row['comment_email'];
+            $comment_content = $row['comment_content'];
+            $comment_date = $row['comment_date'];
+
+            echo "<tr>";
+            echo "<td>{$comment_id}</td>";
+            echo "<td>{$comment_author}</td>";
+            echo "<td>{$comment_content}</td>";
+            echo "<td>{$comment_email}</td>";
+            // echo "<td>{$comment_status}</td>";
+
+            // Combine cat_id to display blog post title
+            $sql_get_title = "SELECT * FROM {$table_posts} WHERE post_id = {$comment_post_id};";
+            $query_get_title = mysqli_query($con, $sql_get_title);
+            while ($row = mysqli_fetch_assoc($query_get_title)) {
+                $post_id = $row['post_id'];
+                $post_title = $row['post_title'];
+                echo "<td><a href='../post.php?post_id={$post_id}'>{$post_title}</a></td>";
+            }
+            
+            echo "<td>{$comment_date}</td>";
+            // echo "<td><a href='posts.php?source=edit_post&post_id={$post_id}' class='btn btn-success'>Approve</a></td>";
+            // echo "<td><a href='posts.php?delete={$post_id}' class='btn btn-danger'>Unapprove</a></td>";
+            echo "<td><a href='comments.php?delete={$comment_id}' class='btn btn-danger'>Delete</a></td>";
+            echo "</tr>";
+        }
+    }
+
+    function delete_comment() {
+        global $con;
+        global $table_comments;
+
+        if (isset($_GET['delete'])) {
+            $delete_comment_id = $_GET['delete'];
+            $sql = "DELETE FROM {$table_comments} WHERE comment_id = {$delete_comment_id};";
+            $query = mysqli_query($con, $sql);
+            if (!$query) {
+                die("Query failed ! " . mysqli_error($con));
+            } else {
+                header("Location: comments.php");
+            }
+        }
+    }
+
 
 ?>

@@ -12,7 +12,7 @@
             <div class="col-md-8">
 
                 <?php
-                    $sql = "SELECT * FROM {$table_posts} ORDER BY post_date;";
+                    $sql = "SELECT * FROM {$table_posts} ORDER BY post_date DESC;";
                     $query = mysqli_query($con, $sql);
                     
                     while ($row = mysqli_fetch_assoc($query)) {
@@ -24,7 +24,6 @@
                         $post_content = substr(mysqli_real_escape_string($con, $row['post_content']), 0, 100);
                         // $post_tags = $row['post_tags'];
                         // $post_comment_count = $row['post_comment_count'];
-                        // $post_status = $row['post_status'];
                         // $post_views_count = $row['post_views_count'];
                     ?>
                         <h1 class="page-header">

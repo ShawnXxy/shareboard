@@ -11,6 +11,7 @@
  
     $table_cat = 'categories';
     $table_posts = 'posts';
+    $table_comments = 'comments';
 
     // Check table existence
     // $sql = "DROP TABLE IF EXISTS {$table_name};";
@@ -18,12 +19,37 @@
 
     // Create table
     // categories
-    $sql = "CREATE TABLE {$table_cat} (cat_id INT(8) AUTO_INCREMENT PRIMARY KEY, cat_title VARCHAR(255) NOT NULL);";
+    $sql = "CREATE TABLE {$table_cat} (
+        cat_id INT(8) AUTO_INCREMENT PRIMARY KEY, 
+        cat_title VARCHAR(255) NOT NULL
+    );";
     mysqli_query($db, $sql);
 
-    // posts
-    $sql = "CREATE TABLE {$table_posts} (post_id INT(8) AUTO_INCREMENT PRIMARY KEY, post_cat_id INT(8), post_title VARCHAR(255) NOT NULL, post_author VARCHAR(255) NOT NULL, post_date DATETIME DEFAULT CURRENT_TIMESTAMP, post_img TEXT, post_content TEXT NOT NULL, post_tags VARCHAR(255), post_comment_count INT(11), post_status VARCHAR(255), post_views_count INT(11));";
+    // blog posts
+    $sql = "CREATE TABLE {$table_posts} (
+        post_id INT(8) AUTO_INCREMENT PRIMARY KEY, 
+        post_cat_id INT(8), 
+        post_title VARCHAR(255) NOT NULL, 
+        post_author VARCHAR(255) NOT NULL, 
+        post_date DATETIME DEFAULT CURRENT_TIMESTAMP, 
+        post_img TEXT, 
+        post_content TEXT NOT NULL, 
+        post_tags VARCHAR(255), 
+        post_comment_count INT(11), 
+        post_views_count INT(11)
+    );";
     mysqli_query($db, $sql);
+
+    // Comments
+    $sql = "CREATE TABLE {$table_comments} (
+        comment_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        comment_post_id INT(8),
+        comment_author VARCHAR(255),
+        comment_email VARCHAR(255),
+        comment_content TEXT,
+        comment_date DATETIME DEFAULT CURRENT_TIMESTAMP
+    );";
+    mysqli_query($con, $sql);
 
     // Connect to database
     // ob_start();

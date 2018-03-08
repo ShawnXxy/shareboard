@@ -25,11 +25,7 @@
                         $post_author = mysqli_real_escape_string($con, $row['post_author']);
                         $post_date = $row['post_date'];
                         $post_img = $row['post_img'];
-                        $post_content = substr(mysqli_real_escape_string($con, $row['post_content']), 0, 100);
-                        // $post_tags = $row['post_tags'];
-                        // $post_comment_count = $row['post_comment_count'];
-                        // $post_status = $row['post_status'];
-                        // $post_views_count = $row['post_views_count'];
+                        $post_content = substr(mysqli_real_escape_string($con, $row['post_content']), 0, 200);
                     ?>
                         <h1 class="page-header">
                             Page Heading
