@@ -28,14 +28,14 @@
                             $source = '';
                         }
                         switch($source) {
-                            case 'add_post';
-                                include "includes/addpost.php";
+                            case 'add_user';
+                                include 'includes/adduser.php';
                                 break;
-                            case 'edit_post';
-                                include "includes/editpost.php";
+                            case 'edit_user';
+                                include 'includes/edituser.php';
                                 break;
                             default:
-                                include 'includes/allposts.php';
+                                include 'includes/allusers.php';
                                 break;
                         }
                     ?>

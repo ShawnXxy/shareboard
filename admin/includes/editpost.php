@@ -18,16 +18,18 @@
         $post_content = $row['post_content'];
         $post_tags = $row['post_tags'];
         $post_comment_count = $row['post_comment_count'];
-        $post_date = $row['post_date'];
+        // $post_date = $row['post_date'];
 
     }
 
-    if (isset($_POST['edit'])) {
+    if (isset($_POST['edit_post'])) {
         $post_author = mysqli_real_escape_string($con, $_POST['post_author']);
         $post_title = mysqli_real_escape_string($con, $_POST['post_title']);
         $post_cat_id = $_POST['post_cat_id'];
+
         $post_img = $_FILES['post_img']['name'];
         $post_img_temp = $_FILES['post_img']['tmp_name'];
+
         $post_tags = $_POST['post_tags'];
         $post_content = mysqli_real_escape_string($con, $_POST['post_content']);
 
@@ -102,6 +104,6 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-success" name="edit" value="Confirm">
+        <input type="submit" class="btn btn-success" name="edit_post" value="Confirm">
     </div>
 </form>

@@ -271,5 +271,103 @@
         }
     }
 
+    /******************
+     * 
+     * Users 
+     * 
+     ********************/
+    function load_users() {
+        global $con;
+        global $table_users;
+
+        $sql = "SELECT * FROM {$table_users} ORDER BY user_lastname;";
+        $query = mysqli_query($con, $sql);
+
+        while ($row = mysqli_fetch_assoc($query)) {
+            $user_id = $row['user_id'];
+            $username = $row['username'];
+            $user_lastname = $row['user_lastname'];
+            $user_firstname = $row['user_firstname'];
+            $user_email = $row['user_email'];
+            $user_img = $row['user_img'];
+            $reg_time = $row['reg_time'];
+
+            echo "<tr>";
+            echo "<td>{$user_id}</td>";
+            echo "<td>{$username}</td>";
+            echo "<td><img class='img-responsive' src='../images/profile/$user_img' alt='test-image' width='100' height='100'></td>";
+            echo "<td>{$user_firstname}</td>";
+            echo "<td>{$user_lastname}</td>";
+            echo "<td>{$user_email}</td>";
+            echo "<td>{$reg_time}</td>";
+            echo "
+                <td>
+                    <a href='users.php?source=edit_user&user_id={$user_id}' class='btn btn-primary'>Edit</a>
+                    <a href='users.php?delete={$user_id}' class='btn btn-danger'>Delete</a>
+                </td>
+                ";
+            echo "</tr>";
+        }
+    }
+
+    function add_user() {
+        global $con;
+        global $table_users;
+
+        if (isset($_POST['create_user'])) {
+            $username = mysqli_real_escape_string($con, $_POST['username']);
+            $password = md5(mysqli_real_escape_string($con, $_POST['password']));
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_email = $_POST['user_email'];
+
+            $user_img = $_FILES['user_img']['name'];
+            $user_img_temp = $_FILES['user_img']['tmp_name'];
+            move_uploaded_file($user_img_temp, "../images/profile/$user_img");
+
+            $reg_time = date('d-m-y');
+    
+            $sql = "INSERT INTO {$table_users} (
+                username,
+                password,
+                user_firstname,
+                user_lastname,
+                user_email,
+                user_img,
+                reg_time
+                ) VALUES (
+                    '{$username}', 
+                    '{$password}', 
+                    '{$user_firstname}', 
+                    '{$user_lastname}', 
+                    '{$user_email}',
+                    '{$user_img}',
+                    now()
+                    );";
+            $query = mysqli_query($con, $sql);
+            if (!$query) {
+                die("Query failed!" . mysqli_error($con));
+            } else {
+                echo "<p class='bg-success'>A new user is created successfully!</p>";
+            }
+            
+        }
+    }
+
+    function delete_user() {
+        global $con;
+        global $table_users;
+
+        if (isset($_GET['delete'])) {
+            $delete_user_id = $_GET['delete'];
+            $sql = "DELETE FROM {$table_users} WHERE user_id = {$delete_user_id};";
+            $query = mysqli_query($con, $sql);
+            if (!$query) {
+                die("Query failed ! " . mysqli_error($con));
+            } else {
+                header("Location: users.php");
+            }
+        }
+    }
 
 ?>

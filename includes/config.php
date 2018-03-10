@@ -1,7 +1,9 @@
 <?php
-    /**
+    /********************************
+     * 
      *  Config database
-     */
+     * 
+     *********************************/
     DEFINE('DB_USERNAME', 'root');
     DEFINE('DB_PASSWORD', 'root');
     DEFINE('DB_HOST', 'localhost');
@@ -9,15 +11,22 @@
  
     $db = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
  
-    $table_cat = 'categories';
-    $table_posts = 'posts';
-    $table_comments = 'comments';
+    
 
     // Check table existence
     // $sql = "DROP TABLE IF EXISTS {$table_name};";
     // mysqli_query($db, $sql);
 
-    // Create table
+    /*****************************
+     * 
+     * Create table
+     * 
+     *********************************/
+    $table_cat = 'categories';
+    $table_posts = 'posts';
+    $table_comments = 'comments';
+    $table_users = 'users';
+
     // categories
     $sql = "CREATE TABLE {$table_cat} (
         cat_id INT(8) AUTO_INCREMENT PRIMARY KEY, 
@@ -49,9 +58,27 @@
         comment_content TEXT,
         comment_date DATETIME DEFAULT CURRENT_TIMESTAMP
     );";
-    mysqli_query($con, $sql);
+    mysqli_query($db, $sql);
 
-    // Connect to database
+    // USERS
+    $sql = "CREATE TABLE {$table_users} (
+        user_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) NOT NULL UNIQUE,
+        password VARCHAR(255) NOT NULL,
+        user_firstname VARCHAR(255),
+        user_lastname VARCHAR(255),
+        user_email VARCHAR(255) NOT NULL,
+        user_img TEXT,
+        user_posts VARCHAR(255),
+        reg_time DATETIME DEFAULT CURRENT_TIMESTAMP
+    );";
+    mysqli_query($db, $sql);
+
+    /*************************************
+     * 
+     *  Connect to database
+     * 
+     ***********************************/
     // ob_start();
     $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     if (!$con) {
