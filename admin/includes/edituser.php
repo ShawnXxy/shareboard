@@ -85,7 +85,7 @@
     <div class="form-group">
         <label for="user_img">User's Profile</label>
         <img class="img-responsive" src="../images/profile/<?php echo $user_img; ?>" alt="" width-"100" height="100">
-        <input type="file" name="post_img">
+        <input type="file" name="user_img">
     </div>
 
     <div class="form-group">
