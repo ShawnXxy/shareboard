@@ -23,11 +23,12 @@
                         $query = mysqli_query($con, $sql);
 
                         while($row = mysqli_fetch_assoc($query)) {
+                            $cat_id = $row['cat_id'];
                             $cat_title = $row['cat_title'];
-                            echo "<li><a href='#'>{$cat_title}</a></li>";
+                            echo "<li><a href='category.php?category={$cat_id}'>{$cat_title}</a></li>";
                         }
                     ?>
-                    <li><a href="admin">Admin</a></li>
+                    <li><a href="#login-form">Admin</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->

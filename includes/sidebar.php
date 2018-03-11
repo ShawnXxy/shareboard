@@ -17,7 +17,7 @@
         </div>
 
         <!-- Login form -->
-        <div class="well">
+        <div class="well" id="login-form">
             <h4>User Login</h4>
             <form action="includes/login.php" method="post">
                 <div class="form-group">
@@ -25,10 +25,11 @@
                 </div><!-- /.input-group -->
                 <div class="form-group">
                     <input type="password" name="password" class="form-control" placeholder="Password">                    
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" name="login" type="submit">Submit</button>
-                    </span>
+                    
                 </div><!-- /.input-group -->
+                <span class="input-group-btn">
+                        <button class="btn btn-primary" name="login" type="submit">Sign In</button>
+                </span>
             </form>
         </div>
 
