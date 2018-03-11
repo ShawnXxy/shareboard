@@ -7,6 +7,7 @@
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Email</th>
+            <th>Role</th>
             <th>Date</th>
             <th>Action</th>
         </tr>

@@ -25,6 +25,7 @@
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_email = $_POST['user_email'];
+        $user_role = $_POST['user_role'];
 
         $user_img = $_FILES['user_img']['name'];
         $user_img_temp = $_FILES['user_img']['tmp_name'];
@@ -44,6 +45,7 @@
             user_firstname = '{$user_firstname}', 
             user_lastname = '{$user_lastname}', 
             user_email = '{$user_email}',
+            user_role = '{$user_role}',
             user_img = '{$user_img}'
             WHERE user_id = {$edit_user_id};
             ";
@@ -80,6 +82,15 @@
     <div class="form-group">
         <label for="user_email">Email</label>
         <input type="email" class="form-control" name="user_email" value="<?php echo $user_email; ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="user_role">Role</label>
+        <select name="user_role">
+            <option value="subscriber">Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Subscriber">Subscriber</option>
+        </select>
     </div>
 
     <div class="form-group">

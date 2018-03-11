@@ -289,6 +289,7 @@
             $user_lastname = $row['user_lastname'];
             $user_firstname = $row['user_firstname'];
             $user_email = $row['user_email'];
+            $user_role = $row['user_role'];
             $user_img = $row['user_img'];
             $reg_time = $row['reg_time'];
 
@@ -299,6 +300,7 @@
             echo "<td>{$user_firstname}</td>";
             echo "<td>{$user_lastname}</td>";
             echo "<td>{$user_email}</td>";
+            echo "<td>{$user_role}</td>";
             echo "<td>{$reg_time}</td>";
             echo "
                 <td>
@@ -320,6 +322,7 @@
             $user_firstname = $_POST['user_firstname'];
             $user_lastname = $_POST['user_lastname'];
             $user_email = $_POST['user_email'];
+            $user_role = $_POST['user_role'];
 
             $user_img = $_FILES['user_img']['name'];
             $user_img_temp = $_FILES['user_img']['tmp_name'];
@@ -333,6 +336,7 @@
                 user_firstname,
                 user_lastname,
                 user_email,
+                user_role,
                 user_img,
                 reg_time
                 ) VALUES (
@@ -341,6 +345,7 @@
                     '{$user_firstname}', 
                     '{$user_lastname}', 
                     '{$user_email}',
+                    '{$user_role}',
                     '{$user_img}',
                     now()
                     );";

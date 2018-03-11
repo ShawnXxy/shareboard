@@ -5,6 +5,19 @@
     include "../functions.php";
 
     ob_start();
+    session_start();
+
+    // Validating role
+    if (!isset($_SESSION['user_role'])) {
+
+        header("Location: ../index.php");
+        
+    } else {
+
+        // if ($_SESSION['user_role'] == 'Subscriber') {
+            
+        // }
+    }
 ?>
 
 <!DOCTYPE html>

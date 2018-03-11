@@ -68,8 +68,9 @@
         user_firstname VARCHAR(255),
         user_lastname VARCHAR(255),
         user_email VARCHAR(255) NOT NULL,
+        user_role VARCHAR(255) NOT NULL,
         user_img TEXT,
-        user_posts VARCHAR(255),
+        user_posts VARCHAR(255), 
         reg_time DATETIME DEFAULT CURRENT_TIMESTAMP
     );";
     mysqli_query($db, $sql);
