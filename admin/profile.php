@@ -27,9 +27,10 @@
                             $sql_cur_user = "SELECT * FROM {$table_users} WHERE username = '{$cur_user}';";
                             $query_cur_user = mysqli_query($con, $sql_cur_user);
 
-                            while ($row = mysqli_fetch_array($query_cur_user)) {
+                            while ($row = mysqli_fetch_assoc($query_cur_user)) {
                                 $cur_user_id = $row['user_id'];
                                 $cur_username = $row['username'];
+                                $cur_password = $row['password'];
                                 $cur_user_lastname = $row['user_lastname'];
                                 $cur_user_firstname = $row['user_firstname'];
                                 $cur_user_email = $row['user_email'];
@@ -97,6 +98,11 @@
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" name="username" value="<?php echo $cur_username; ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" value="<?php echo $cur_password; ?>">
                         </div>
 
                         <div class="form-group">
