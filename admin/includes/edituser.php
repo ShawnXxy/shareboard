@@ -16,6 +16,7 @@
         $user_firstname = $row['user_firstname'];
         $user_lastname = $row['user_lastname'];
         $user_email = $row['user_email'];
+        $user_role = $row['user_role'];
         $user_img = $row['user_img'];
     }
 
@@ -25,6 +26,7 @@
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_email = $_POST['user_email'];
+        $user_role = $_POST['user_role'];
 
         $user_img = $_FILES['user_img']['name'];
         $user_img_temp = $_FILES['user_img']['tmp_name'];
@@ -44,6 +46,7 @@
             user_firstname = '{$user_firstname}', 
             user_lastname = '{$user_lastname}', 
             user_email = '{$user_email}',
+            user_role = '{$user_role}',
             user_img = '{$user_img}'
             WHERE user_id = {$edit_user_id};
             ";
@@ -86,6 +89,15 @@
         <label for="user_img">User's Profile</label>
         <img class="img-responsive" src="../images/profile/<?php echo $user_img; ?>" alt="" width-"100" height="100">
         <input type="file" name="user_img">
+    </div>
+
+    <div class="form-group">
+        <label for="user_role">Role</label>
+        <select name="user_role">
+            <option value="subscriber">Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Subscriber">Subscriber</option>
+        </select>
     </div>
 
     <div class="form-group">
