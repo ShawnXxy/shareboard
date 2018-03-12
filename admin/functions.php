@@ -318,7 +318,10 @@
 
         if (isset($_POST['create_user'])) {
             $username = mysqli_real_escape_string($con, $_POST['username']);
-            $password = md5(mysqli_real_escape_string($con, $_POST['password']));
+            $password = mysqli_real_escape_string($con, $_POST['password']);
+            $md5_new = md5($password);
+            $hash = password_hash($md5_new, PASSWORD_DEFAULT);
+
             $user_firstname = $_POST['user_firstname'];
             $user_lastname = $_POST['user_lastname'];
             $user_email = $_POST['user_email'];
@@ -341,7 +344,7 @@
                 reg_time
                 ) VALUES (
                     '{$username}', 
-                    '{$password}', 
+                    '{$md5_new}', 
                     '{$user_firstname}', 
                     '{$user_lastname}', 
                     '{$user_email}',

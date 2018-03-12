@@ -21,7 +21,10 @@
 
     if (isset($_POST['edit_user'])) {
         $username = mysqli_real_escape_string($con, $_POST['username']);
-        $password = md5(mysqli_real_escape_string($con, $_POST['password']));
+        $password = mysqli_real_escape_string($con, $_POST['password']);
+        $md5_edit = md5($password);
+        $hash = password_hash($md5_edit, PASSWORD_DEFAULT);
+
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
         $user_email = $_POST['user_email'];
@@ -41,7 +44,7 @@
 
         $sql_update_user = "UPDATE {$table_users} SET 
             username = '{$username}', 
-            password = '{$password}', 
+            password = '{$md5_edit}', 
             user_firstname = '{$user_firstname}', 
             user_lastname = '{$user_lastname}', 
             user_email = '{$user_email}',
@@ -76,7 +79,7 @@
 
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" value="<?php echo $password; ?>">
+        <input type="password" class="form-control" name="password" value="" required>
     </div>
 
     <div class="form-group">
