@@ -5,8 +5,6 @@
 <!-- Header -->
 <?php include 'includes/header.php'; ?>
 
-
-
 <div id="wrapper">
 
     <!-- Navigation -->
