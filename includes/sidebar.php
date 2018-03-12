@@ -17,7 +17,7 @@
         </div>
 
         <!-- Login form -->
-        <div class="well">
+        <div class="well" id="login">
             <h4>User Login</h4>
             <form action="includes/login.php" method="post">
                 <div class="form-group">
