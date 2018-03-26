@@ -9,7 +9,7 @@
         $md5_login = md5($login_password);
         $hash = password_hash($md5_login, PASSWORD_DEFAULT);
 
-        $sql = "SELECT * FROM {$table_users} WHERE username = '{$login_username}';";
+        $sql = "SELECT * FROM $table_users WHERE username = '$login_username';";
         $query = mysqli_query($con, $sql);
         if (!$query) {
             die("Query failed : " . mysqli_error($con));

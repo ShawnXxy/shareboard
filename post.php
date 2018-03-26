@@ -16,7 +16,7 @@
                         $cur_post_id = $_GET['post_id'];
                     }
 
-                    $sql = "SELECT * FROM {$table_posts} WHERE post_id = {$cur_post_id};";
+                    $sql = "SELECT * FROM $table_posts WHERE post_id = $cur_post_id;";
                     $query = mysqli_query($con, $sql);
                     
                     while ($row = mysqli_fetch_assoc($query)) {
@@ -46,7 +46,7 @@
                         <img class="img-responsive" src="images/<?php echo $post_img; ?>" alt="">
                         <hr>
                         <p><?php echo $post_content; ?></p>
-                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <a class="btn btn-primary" href="index.php">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                         <hr>
                     <?php
@@ -63,17 +63,17 @@
                         $comment_email = $_POST['comment_email'];
                         $comment_content = $_POST['comment_content'];
             
-                        $sql = "INSERT INTO {$table_comments} (
+                        $sql = "INSERT INTO $table_comments (
                                 comment_post_id, 
                                 comment_author,
                                 comment_email,
                                 comment_content,
                                 comment_date
                             ) VALUES (
-                                {$cur_post_id},
-                                '{$comment_author}', 
-                                '{$comment_email}',
-                                '{$comment_content}', 
+                                $cur_post_id,
+                                '$comment_author', 
+                                '$comment_email',
+                                '$comment_content', 
                                 now()
                             );";
                         $query = mysqli_query($con, $sql);
@@ -82,7 +82,7 @@
                         }
 
                     // Get comment count
-                    $sql_get_comment_count = "UPDATE {$table_posts} SET post_comment_count = post_comment_count + 1 WHERE post_id = {$cur_post_id};";
+                    $sql_get_comment_count = "UPDATE $table_posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $cur_post_id;";
                     mysqli_query($con, $sql_get_comment_count);
                     }
                 ?>
@@ -109,7 +109,7 @@
 
                 <!-- Posted Comments -->
                 <?php
-                    $sql_cur_post = "SELECT * FROM {$table_comments} WHERE comment_post_id = {$cur_post_id} ORDER BY comment_date;";
+                    $sql_cur_post = "SELECT * FROM $table_comments WHERE comment_post_id = $cur_post_id ORDER BY comment_date;";
                     $query_cur_post = mysqli_query($con, $sql_cur_post);
                     if (!$query_cur_post) {
                         die("Query Failed ! " . mysqli_error($con));

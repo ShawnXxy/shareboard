@@ -10,8 +10,6 @@
     DEFINE('DB_DATABASE', 'shareboard');
  
     $db = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
- 
-    
 
     // Check table existence
     // $sql = "DROP TABLE IF EXISTS {$table_name};";
@@ -28,14 +26,14 @@
     $table_users = 'users';
 
     // categories
-    $sql = "CREATE TABLE {$table_cat} (
+    $sql = "CREATE TABLE $table_cat (
         cat_id INT(8) AUTO_INCREMENT PRIMARY KEY, 
         cat_title VARCHAR(255) NOT NULL
     );";
     mysqli_query($db, $sql);
 
     // blog posts
-    $sql = "CREATE TABLE {$table_posts} (
+    $sql = "CREATE TABLE $table_posts (
         post_id INT(8) AUTO_INCREMENT PRIMARY KEY, 
         post_cat_id INT(8), 
         post_title VARCHAR(255) NOT NULL, 
@@ -50,7 +48,7 @@
     mysqli_query($db, $sql);
 
     // Comments
-    $sql = "CREATE TABLE {$table_comments} (
+    $sql = "CREATE TABLE $table_comments (
         comment_id INT(11) AUTO_INCREMENT PRIMARY KEY,
         comment_post_id INT(8),
         comment_author VARCHAR(255),
@@ -61,7 +59,7 @@
     mysqli_query($db, $sql);
 
     // USERS
-    $sql = "CREATE TABLE {$table_users} (
+    $sql = "CREATE TABLE $table_users (
         user_id INT(11) AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(255) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL,

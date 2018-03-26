@@ -36,7 +36,7 @@
         <!-- Blog Categories Well -->
         <div class="well">
             <?php
-                $sql = "SELECT * FROM {$table_cat};";
+                $sql = "SELECT * FROM $table_cat;";
                 $query = mysqli_query($con, $sql);
             ?>
             <h4>Blog Categories</h4>

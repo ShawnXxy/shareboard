@@ -16,7 +16,7 @@
                         $cur_post_cat_id = $_GET['category'];
                     }
 
-                    $sql = "SELECT * FROM {$table_posts} WHERE post_cat_id = {$cur_post_cat_id};";
+                    $sql = "SELECT * FROM $table_posts WHERE post_cat_id = $cur_post_cat_id;";
                     $query = mysqli_query($con, $sql);
                     
                     while ($row = mysqli_fetch_assoc($query)) {

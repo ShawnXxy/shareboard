@@ -28,10 +28,10 @@
                             $source = '';
                         }
                         switch($source) {
-                            case 'add_post';
+                            case 'add_post':
                                 include "includes/addpost.php";
                                 break;
-                            case 'edit_post';
+                            case 'edit_post':
                                 include "includes/editpost.php";
                                 break;
                             default:

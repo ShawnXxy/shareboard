@@ -12,7 +12,7 @@
             <div class="col-md-8">
 
                 <?php
-                    $sql = "SELECT * FROM {$table_posts} ORDER BY post_date DESC;";
+                    $sql = "SELECT * FROM $table_posts ORDER BY post_date DESC;";
                     $query = mysqli_query($con, $sql);
                     
                     while ($row = mysqli_fetch_assoc($query)) {
@@ -43,7 +43,7 @@
                         <img class="img-responsive" src="images/<?php echo $post_img; ?>" alt="">
                         <hr>
                         <p><?php echo $post_content; ?></p>
-                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <a class="btn btn-primary" href="post.php?post_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                         <hr>
                     <?php

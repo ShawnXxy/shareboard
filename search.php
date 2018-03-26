@@ -14,7 +14,7 @@
                 <?php
                     if (isset($_POST['submit'])) {
                         $search = $_POST['search'];
-                        $sql = "SELECT * FROM {$table_posts} WHERE post_tags LIKE '%$search%'
+                        $sql = "SELECT * FROM $table_posts WHERE post_tags LIKE '%$search%'
                             OR post_title LIKE '%$search%'
                             OR post_author LIKE '%$search%'
                             OR post_content LIKE '%$search%';";

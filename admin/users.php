@@ -28,10 +28,10 @@
                             $source = '';
                         }
                         switch($source) {
-                            case 'add_user';
+                            case 'add_user':
                                 include 'includes/adduser.php';
                                 break;
-                            case 'edit_user';
+                            case 'edit_user':
                                 include 'includes/edituser.php';
                                 break;
                             default:

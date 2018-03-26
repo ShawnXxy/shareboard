@@ -26,7 +26,7 @@
                     <?php
                         if (isset($_SESSION['username'])) {
                             $cur_user = $_SESSION['username'];
-                            $sql_cur_user = "SELECT * FROM {$table_users} WHERE username = '{$cur_user}';";
+                            $sql_cur_user = "SELECT * FROM $table_users WHERE username = '$cur_user';";
                             $query_cur_user = mysqli_query($con, $sql_cur_user);
 
                             while ($row = mysqli_fetch_array($query_cur_user)) {
@@ -55,22 +55,22 @@
                         
                                 move_uploaded_file($user_img_temp, "../images/profile/$user_img");
                                 if (empty($user_img)) {
-                                    $sql = "SELECT * FROM {$table_users} WHERE user_id = {$cur_user_id};";
+                                    $sql = "SELECT * FROM $table_users WHERE user_id = $cur_user_id;";
                                     $query = mysqli_query($con, $sql);
                                     while($row = mysqli_fetch_array($query)) {
                                         $user_img = $row['user_img'];
                                     }
                                 }
                         
-                                $sql_update_user = "UPDATE {$table_users} SET 
-                                    username = '{$username}', 
-                                    password = '{$md5_edit}', 
-                                    user_firstname = '{$user_firstname}', 
-                                    user_lastname = '{$user_lastname}', 
-                                    user_email = '{$user_email}',
-                                    user_role = '{$user_role}',
-                                    user_img = '{$user_img}'
-                                    WHERE user_id = {$cur_user_id};
+                                $sql_update_user = "UPDATE $table_users SET 
+                                    username = '$username', 
+                                    password = '$md5_edit', 
+                                    user_firstname = '$user_firstname', 
+                                    user_lastname = '$user_lastname', 
+                                    user_email = '$user_email',
+                                    user_role = '$user_role',
+                                    user_img = '$user_img'
+                                    WHERE user_id = $cur_user_id;
                                     ";
                                 $query_update_user = mysqli_query($con, $sql_update_user);
                                 if (!$query_update_user) {

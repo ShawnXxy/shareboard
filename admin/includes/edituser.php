@@ -3,7 +3,7 @@
         $edit_user_id = $_GET['user_id'];
     }
 
-    $sql = "SELECT * FROM {$table_users} WHERE user_id = {$edit_user_id};";
+    $sql = "SELECT * FROM $table_users WHERE user_id = $edit_user_id;";
     $query = mysqli_query($con, $sql);
     if (!$query) {
         die('Query Failed ! ' . mysqli_error($con));
@@ -35,22 +35,22 @@
 
         move_uploaded_file($user_img_temp, "../images/profile/$user_img");
         if (empty($user_img)) {
-            $sql = "SELECT * FROM {$table_users} WHERE user_id = {$edit_user_id};";
+            $sql = "SELECT * FROM $table_users WHERE user_id = $edit_user_id;";
             $query = mysqli_query($con, $sql);
             while($row = mysqli_fetch_array($query)) {
                 $user_img = $row['user_img'];
             }
         }
 
-        $sql_update_user = "UPDATE {$table_users} SET 
-            username = '{$username}', 
-            password = '{$md5_edit}', 
-            user_firstname = '{$user_firstname}', 
-            user_lastname = '{$user_lastname}', 
-            user_email = '{$user_email}',
-            user_role = '{$user_role}',
-            user_img = '{$user_img}'
-            WHERE user_id = {$edit_user_id};
+        $sql_update_user = "UPDATE $table_users SET 
+            username = '$username', 
+            password = '$md5_edit', 
+            user_firstname = '$user_firstname', 
+            user_lastname = '$user_lastname', 
+            user_email = '$user_email',
+            user_role = '$user_role',
+            user_img = '$user_img'
+            WHERE user_id = $edit_user_id;
             ";
         $query_update_user = mysqli_query($con, $sql_update_user);
         if (!$query_update_user) {

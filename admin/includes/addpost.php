@@ -11,12 +11,12 @@
         <label for="post_cat">Category</label>
         <select name="post_cat_id" id="">
             <?php
-                $sql = "SELECT * FROM {$table_cat};";
+                $sql = "SELECT * FROM $table_cat;";
                 $query = mysqli_query($con, $sql);
                 while ($row = mysqli_fetch_assoc($query)) {
                     $cat_id = $row['cat_id'];
                     $cat_title = $row['cat_title'];
-                    echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                    echo "<option value='$cat_id'>$cat_title</option>";
                 }
             ?>
         </select>
