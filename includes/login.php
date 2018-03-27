@@ -34,10 +34,11 @@
 
             // Redirect
             header("Location: ../admin"); 
-            // echo "<p class='bg-warning'>Username or password is incorrect!</p>";
             
         } else {
             header("Location: ../index.php");
+            echo "<p class='bg-warning'>Username or password is incorrect!</p>";
+            // var_dump(die($md5_login . "___________________" . $password));
         }
     }
 ?>

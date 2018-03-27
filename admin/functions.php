@@ -320,7 +320,7 @@
             $username = mysqli_real_escape_string($con, $_POST['username']);
             $password = mysqli_real_escape_string($con, $_POST['password']);
             $md5_new = md5($password);
-            $hash = password_hash($md5_new, PASSWORD_DEFAULT);
+            // $hash = password_hash($md5_new, PASSWORD_DEFAULT);
 
             $user_firstname = mysqli_real_escape_string($con, $_POST['user_firstname']);
             $user_lastname = mysqli_real_escape_string($con, $_POST['user_lastname']);

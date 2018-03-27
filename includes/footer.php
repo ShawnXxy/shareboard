@@ -2,7 +2,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; <a href="http://shawnxxy.site">ShawnX</a> <?php echo date('Y'); ?></p>
+                    <p>Copyright &copy; <a href="http://shawnxxy.site" target="_blank">ShawnX</a> <?php echo date('Y'); ?></p>
                 </div><!-- /.col-lg-12 -->
             </div>
                 <!-- /.row -->

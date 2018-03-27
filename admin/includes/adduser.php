@@ -1,6 +1,6 @@
 
 <form action="" method="post" enctype="multipart/form-data">
-    <!-- Insert post -->
+    <!-- Add User -->
     <?php add_user(); ?>
     <div class="form-group">
         <label for="user_firstname">Firstname</label>
@@ -19,12 +19,12 @@
 
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="user_password" required>
+        <input type="password" class="form-control" name="password" required>
     </div>
 
     <div class="form-group">
         <label for="user_email">Email</label>
-        <input type="email" class="form-control" name="user_email" required>
+        <input type="email" class="form-control" name="user_email">
     </div>
 
     <div class="form-group">

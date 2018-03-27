@@ -12,7 +12,6 @@
     while ($row = mysqli_fetch_assoc($query)) {
         $edit_user_id = $row['user_id'];
         $username = $row['username'];
-        $password = $row['password'];
         $user_firstname = $row['user_firstname'];
         $user_lastname = $row['user_lastname'];
         $user_email = $row['user_email'];
@@ -23,7 +22,7 @@
         $username = mysqli_real_escape_string($con, $_POST['username']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $md5_edit = md5($password);
-        $hash = password_hash($md5_edit, PASSWORD_DEFAULT);
+        // $hash = password_hash($md5_edit, PASSWORD_DEFAULT);
 
         $user_firstname = mysqli_real_escape_string($con, $_POST['user_firstname']);
         $user_lastname = mysqli_real_escape_string($con, $_POST['user_lastname']);
@@ -64,12 +63,12 @@
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="user_firstname">Firstname</label>
-        <input type="text" class="form-control" name="user_firstname" value="<?php echo $user_firstname; ?>" required>
+        <input type="text" class="form-control" name="user_firstname" value="<?php echo $user_firstname; ?>">
     </div>
 
     <div class="form-group">
         <label for="user_lastname">Lastname</label>
-        <input type="text" class="form-control" name="user_lastname" value="<?php echo $user_lastname; ?>" required>
+        <input type="text" class="form-control" name="user_lastname" value="<?php echo $user_lastname; ?>">
     </div>
 
     <div class="form-group">
