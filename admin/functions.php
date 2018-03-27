@@ -123,7 +123,7 @@
             echo "<tr>";
             echo "<td>$post_id</td>";
             echo "<td>$post_author</td>";
-            echo "<td>$post_title</td>";
+            echo "<td><a href='../post.php?post_id=$post_id'>$post_title</a></td>";
 
             // Combine cat_id to display category
             $sql_get_cat = "SELECT * FROM $table_cat WHERE cat_id = $post_cat_id;";
@@ -322,9 +322,9 @@
             $md5_new = md5($password);
             $hash = password_hash($md5_new, PASSWORD_DEFAULT);
 
-            $user_firstname = $_POST['user_firstname'];
-            $user_lastname = $_POST['user_lastname'];
-            $user_email = $_POST['user_email'];
+            $user_firstname = mysqli_real_escape_string($con, $_POST['user_firstname']);
+            $user_lastname = mysqli_real_escape_string($con, $_POST['user_lastname']);
+            $user_email = mysqli_real_escape_string($con, $_POST['user_email']);
             $user_role = $_POST['user_role'];
 
             $user_img = $_FILES['user_img']['name'];

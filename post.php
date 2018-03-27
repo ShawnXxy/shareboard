@@ -20,11 +20,11 @@
                     $query = mysqli_query($con, $sql);
                     
                     while ($row = mysqli_fetch_assoc($query)) {
-                        $post_title = mysqli_real_escape_string($con, $row['post_title']);
-                        $post_author = mysqli_real_escape_string($con, $row['post_author']);
+                        $post_title = $row['post_title'];
+                        $post_author = $row['post_author'];
                         $post_date = $row['post_date'];
                         $post_img = $row['post_img'];
-                        $post_content = mysqli_real_escape_string($con, $row['post_content']);
+                        $post_content = $row['post_content'];
                         // $post_tags = $row['post_tags'];
                         // $post_comment_count = $row['post_comment_count'];
                         // $post_views_count = $row['post_views_count'];
@@ -59,9 +59,9 @@
                 <?php 
                     if (isset($_POST['create_comment'])) {
                         $cur_post_id = $_GET['post_id'];
-                        $comment_author = $_POST['comment_author'];
-                        $comment_email = $_POST['comment_email'];
-                        $comment_content = $_POST['comment_content'];
+                        $comment_author = mysqli_real_escape_string($con, $_POST['comment_author']);
+                        $comment_email = mysqli_real_escape_string($con, $_POST['comment_email']);
+                        $comment_content = mysqli_real_escape_string($con, $_POST['comment_content']);
             
                         $sql = "INSERT INTO $table_comments (
                                 comment_post_id, 
@@ -81,9 +81,9 @@
                             die('Query failed ! ' . mysqli_error());
                         }
 
-                    // Get comment count
-                    $sql_get_comment_count = "UPDATE $table_posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $cur_post_id;";
-                    mysqli_query($con, $sql_get_comment_count);
+                        // Get comment count
+                        $sql_get_comment_count = "UPDATE $table_posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $cur_post_id;";
+                        mysqli_query($con, $sql_get_comment_count);
                     }
                 ?>
                 <div class="well">

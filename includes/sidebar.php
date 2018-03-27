@@ -28,7 +28,8 @@
                     
                 </div><!-- /.input-group -->
                 <span class="input-group-btn">
-                        <button class="btn btn-primary" name="login" type="submit">Sign In</button>
+                    <button class="btn btn-primary" name="login" type="submit">Sign In</button>
+                    <a href="../registration.php" class="btn btn-primary" name="register" type="submit">Sign Up</a>
                 </span>
             </form>
         </div>

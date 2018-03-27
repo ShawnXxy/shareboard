@@ -28,7 +28,7 @@
                             echo "<li><a href='category.php?category={$cat_id}'>{$cat_title}</a></li>";
                         }
                     ?>
-                    <li><a href="#login-form">Admin</a></li>
+                    <li><a href="index.php#login-form">Admin</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->

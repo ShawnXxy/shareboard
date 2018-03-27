@@ -25,9 +25,9 @@
         $md5_edit = md5($password);
         $hash = password_hash($md5_edit, PASSWORD_DEFAULT);
 
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
-        $user_email = $_POST['user_email'];
+        $user_firstname = mysqli_real_escape_string($con, $_POST['user_firstname']);
+        $user_lastname = mysqli_real_escape_string($con, $_POST['user_lastname']);
+        $user_email = mysqli_real_escape_string($con, $_POST['user_email']);
         $user_role = $_POST['user_role'];
 
         $user_img = $_FILES['user_img']['name'];
