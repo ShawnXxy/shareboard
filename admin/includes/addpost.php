@@ -39,7 +39,7 @@
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" cols="30" rows="10"></textarea>
+        <textarea class="form-control" name="post_content" id="editor" cols="30" rows="50"></textarea>
     </div>
 
     <div class="form-group">

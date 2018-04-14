@@ -1,6 +1,8 @@
 </div>
     <!-- /#wrapper -->
 
+    <!-- CKEditor5 -->
+    <script src="./js/CKEditor.js"></script>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
