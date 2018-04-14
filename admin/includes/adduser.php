@@ -13,13 +13,13 @@
     </div>
 
     <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">Username *</label>
         <input type="text" class="form-control" name="username" required>
     </div>
 
     <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" required>
+        <label for="password">Password *</label>
+        <input type="password" class="form-control" name="password" minlength="8" required>
     </div>
 
     <div class="form-group">

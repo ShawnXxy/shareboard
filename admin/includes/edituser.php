@@ -78,7 +78,7 @@
 
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" value="" required>
+        <input type="password" class="form-control" name="password" value="" minlength="8" required>
     </div>
 
     <div class="form-group">
