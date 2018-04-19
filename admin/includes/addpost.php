@@ -27,7 +27,7 @@
         <input type="text" class="form-control" name="post_author" value="<?php echo $_SESSION['username']; ?>" disabled="true">
     </div>
 
-    <div class="form-group">
+    <div class="form-group"> 
         <label for="post_img">Post Image</label>
         <input type="file" name="post_img">
     </div>
