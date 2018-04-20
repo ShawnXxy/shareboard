@@ -3,6 +3,8 @@
 
 <div id="wrapper">
 
+    
+
     <!-- Navigation -->
     <?php include 'includes/navigation.php'; ?>
 

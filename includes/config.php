@@ -24,6 +24,7 @@
     $table_posts = 'posts';
     $table_comments = 'comments';
     $table_users = 'users';
+    $table_usersOnline = "users_online";
 
     // categories
     $sql = "CREATE TABLE $table_cat (
@@ -70,6 +71,14 @@
         user_img TEXT,
         user_posts VARCHAR(255), 
         reg_time DATETIME DEFAULT CURRENT_TIMESTAMP
+    );";
+    mysqli_query($db, $sql);
+
+    // Users online
+    $sql = "CREATE TABLE $table_usersOnline (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        session VARCHAR(255) NOT NULL,
+        time INT(11) NOT NULL
     );";
     mysqli_query($db, $sql);
 
