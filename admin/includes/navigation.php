@@ -12,7 +12,28 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
+                <?php
+                    $session = session_id();
+                    $time = time();
+                    $time_out_in_sec = 300; 
+                    // Counting how long user been online
+                    $time_out = $time - $time_out_in_sec;
+            
+                    $sql = "SELECT * FROM $table_usersOnline WHERE session = '$session';";
+                    $query = mysqli_query($con, $sql);
+                    $count = mysqli_num_rows($query); 
+                    if ($count == NULL) { // user is not online and a new user is logged in
+                        mysqli_query($con, "INSERT INTO $table_usersOnline(session, time) VALUES('$session', '$time');");
+                    } else { // the user is already online
+                        mysqli_query($con, "UPDATE $table_usersOnline SET time = '$time' WHERE session = '$session';");
+                    }
+            
+                    $online = mysqli_query($con, "SELECT * FROM $table_usersOnline WHERE time > '$time_out';");
+                    $online_num = mysqli_num_rows($online);
+                ?>
+                <li><a href="">Users Online: <?php echo $online_num; ?></a></li>
                 <li><a href="../index.php">Home</a></li>
+                
 
                 <!-- message dropdown menu -->
                 <!-- <li class="dropdown">
@@ -66,6 +87,7 @@
                         </li>
                     </ul>
                 </li>
+                
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">

@@ -1,4 +1,37 @@
 <?php
+    
+    /**********************
+     * 
+     *  Getting Online users
+     * 
+     /********************* */
+
+     function online_num() {
+        global $con;
+        global $table_usersOnline;
+
+        $session = session_id();
+        $time = time();
+        $time_out_in_sec = 300; 
+        // Counting how long user been online
+        $time_out = $time - $time_out_in_sec;
+
+        $sql = "SELECT * FROM $table_usersOnline WHERE session = '$session';";
+        $query = mysqli_query($con, $sql);
+        $count = mysqli_num_rows($query); 
+        if ($count == NULL) { // user is not online and a new user is logged in
+            mysqli_query($con, "INSERT INTO $table_usersOnline(session, time) VALUES('$session', '$time');");
+        } else { // the user is already online
+            mysqli_query($con, "UPDATE $table_usersOnline SET time = '$time' WHERE session = '$session';");
+        }
+
+        $online = mysqli_query($con, "SELECT * FROM $table_usersOnline WHERE time > '$time_out';");
+        $online_num = mysqli_num_rows($online);
+        echo $online_num;
+
+    }
+    
+    
     /***************
      * 
      *  Categories
@@ -377,5 +410,8 @@
             }
         }
     }
+
+
+    
 
 ?>
