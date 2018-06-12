@@ -33,7 +33,7 @@
             $_SESSION['user_role'] = $user_role;
 
             // Redirect
-            header("Location: ../admin"); 
+            header("Location: ../index.php"); 
             
         } else {
             header("Location: ../index.php");

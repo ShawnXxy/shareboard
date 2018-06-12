@@ -1,6 +1,6 @@
 <?php
     // database setting and connections
-    include "../includes/config.php"; 
+    include "../includes/config.php";
     // functions defined
     include "../functions.php";
 
@@ -11,11 +11,11 @@
     if (!isset($_SESSION['user_role'])) {
 
         header("Location: ../index.php");
-        
+
     } else {
 
         // if ($_SESSION['user_role'] == 'Subscriber') {
-            
+
         // }
     }
 ?>
@@ -37,7 +37,7 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
+    <!--  Fontawesome -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Personal Blog System">
+    <meta name="author" content="Xiangyu Shawn Xiao">
 
     <title>ShareBoard</title>
 
@@ -14,6 +14,9 @@
 
     <!-- Custom CSS -->
     <link href="css/blog-home.css" rel="stylesheet">
+
+    <!--  Fontawesome -->
+    <link href="./admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -27,14 +27,14 @@
         <input type="email" class="form-control" name="user_email">
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="user_role">Role</label>
         <select name="user_role">
             <option value="subscriber">Select Role</option>
             <option value="Admin">Admin</option>
             <option value="Subscriber">Subscriber</option>
         </select>
-    </div>
+    </div> -->
 
     <div class="form-group">
         <label for="user_img">Upload Your Profile Picture</label>

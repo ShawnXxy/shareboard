@@ -1,14 +1,14 @@
 <?php
     /********************************
-     * 
+     *
      *  Config database
-     * 
+     *
      *********************************/
-    DEFINE('DB_USERNAME', 'root');
-    DEFINE('DB_PASSWORD', 'root');
-    DEFINE('DB_HOST', 'localhost');
-    DEFINE('DB_DATABASE', 'shareboard');
- 
+    DEFINE('DB_USERNAME', 'shawnxxy');
+    DEFINE('DB_PASSWORD', 'XXy@4592995');
+    DEFINE('DB_HOST', '107.180.12.114');
+    DEFINE('DB_DATABASE', 'shawnxxy_shareboard');
+
     $db = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
     // Check table existence
@@ -16,9 +16,9 @@
     // mysqli_query($db, $sql);
 
     /*****************************
-     * 
+     *
      * Create table
-     * 
+     *
      *********************************/
     $table_cat = 'categories';
     $table_posts = 'posts';
@@ -28,22 +28,22 @@
 
     // categories
     $sql = "CREATE TABLE $table_cat (
-        cat_id INT(8) AUTO_INCREMENT PRIMARY KEY, 
+        cat_id INT(8) AUTO_INCREMENT PRIMARY KEY,
         cat_title VARCHAR(255) NOT NULL
     );";
     mysqli_query($db, $sql);
 
     // blog posts
     $sql = "CREATE TABLE $table_posts (
-        post_id INT(8) AUTO_INCREMENT PRIMARY KEY, 
-        post_cat_id INT(8), 
-        post_title VARCHAR(255) NOT NULL, 
-        post_author VARCHAR(255) NOT NULL, 
-        post_date DATETIME DEFAULT CURRENT_TIMESTAMP, 
-        post_img TEXT, 
-        post_content TEXT NOT NULL, 
-        post_tags VARCHAR(255), 
-        post_comment_count INT(11), 
+        post_id INT(8) AUTO_INCREMENT PRIMARY KEY,
+        post_cat_id INT(8),
+        post_title VARCHAR(255) NOT NULL,
+        post_author VARCHAR(255) NOT NULL,
+        post_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+        post_img TEXT,
+        post_content TEXT NOT NULL,
+        post_tags VARCHAR(255),
+        post_comment_count INT(11),
         post_views_count INT(11)
     );";
     mysqli_query($db, $sql);
@@ -67,9 +67,9 @@
         user_firstname VARCHAR(255),
         user_lastname VARCHAR(255),
         user_email VARCHAR(255) NOT NULL,
-        user_role VARCHAR(255) NOT NULL,
+        user_role INT(3) NOT NULL,
         user_img TEXT,
-        user_posts VARCHAR(255), 
+        user_posts VARCHAR(255),
         reg_time DATETIME DEFAULT CURRENT_TIMESTAMP
     );";
     mysqli_query($db, $sql);
@@ -83,9 +83,9 @@
     mysqli_query($db, $sql);
 
     /*************************************
-     * 
+     *
      *  Connect to database
-     * 
+     *
      ***********************************/
     // ob_start();
     $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE);

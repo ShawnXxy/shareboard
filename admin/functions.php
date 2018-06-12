@@ -1,9 +1,9 @@
 <?php
-    
+
     /**********************
-     * 
+     *
      *  Getting Online users
-     * 
+     *
      /********************* */
 
      function online_num() {
@@ -19,13 +19,13 @@
 
                 $session = session_id();
                 $time = time();
-                $time_out_in_sec = 300; 
+                $time_out_in_sec = 300;
                 // Counting how long user been online
                 $time_out = $time - $time_out_in_sec;
 
                 $sql = "SELECT * FROM $table_usersOnline WHERE session = '$session';";
                 $query = mysqli_query($con, $sql);
-                $count = mysqli_num_rows($query); 
+                $count = mysqli_num_rows($query);
                 if ($count == NULL) { // user is not online and a new user is logged in
                     mysqli_query($con, "INSERT INTO $table_usersOnline(session, time) VALUES('$session', '$time');");
                 } else { // the user is already online
@@ -34,17 +34,16 @@
 
                 $online = mysqli_query($con, "SELECT * FROM $table_usersOnline WHERE time > '$time_out';");
                 echo $online_num = mysqli_num_rows($online);
-            } 
+            }
         }
-    
+
     }
     online_num();
-    
-    
+
     /***************
-     * 
+     *
      *  Categories
-     * 
+     *
      *******************/
     function load_cat() {
         global $con;
@@ -81,7 +80,7 @@
                 } else {
                     echo "<p class='bg-success'>New category added!</p>";
                 }
-            } 
+            }
         }
     }
 
@@ -109,8 +108,8 @@
 
             if (isset($_POST['edit'])) {
                 $edit_cat_title = $_POST['cat_title'];
-                $sql = "UPDATE $table_cat SET 
-                    cat_title = '$edit_cat_title' 
+                $sql = "UPDATE $table_cat SET
+                    cat_title = '$edit_cat_title'
                     WHERE cat_id = $cat_id;
                     ";
                 $query = mysqli_query($con, $sql);
@@ -139,9 +138,9 @@
     }
 
     /******************
-     * 
-     * Post 
-     * 
+     *
+     * Post
+     *
      ********************/
     function load_posts() {
         global $con;
@@ -175,7 +174,7 @@
                 $cat_title = $row['cat_title'];
                 echo "<td>$cat_title</td>";
             }
-            
+
             echo "<td><img class='img-responsive' src='../images/$post_img' alt='test-image' width='100' height='100'></td>";
             echo "<td>$post_tags</td>";
             // echo "<td>{$post_views_count}</td>";
@@ -197,32 +196,32 @@
 
         if (isset($_POST['publish_post'])) {
             $post_title = mysqli_real_escape_string($con, $_POST['post_title']);
-            $post_author = mysqli_real_escape_string($con, $_POST['post_author']);
+            $post_author = mysqli_real_escape_string($con, $_SESSION['username']);
             $post_cat_id = $_POST['post_cat_id'];
-    
+
             $post_img = $_FILES['post_img']['name'];
             $post_img_temp = $_FILES['post_img']['tmp_name'];
             move_uploaded_file($post_img_temp, "../images/$post_img");
-    
+
             $post_tags = $_POST['post_tags'];
             $post_content = mysqli_real_escape_string($con, $_POST['post_content']);
             $post_date = date('d-m-y');
-    
+
             $sql = "INSERT INTO $table_posts (
-                post_cat_id, 
-                post_title, 
-                post_author, 
-                post_date, 
-                post_img, 
-                post_content, 
+                post_cat_id,
+                post_title,
+                post_author,
+                post_date,
+                post_img,
+                post_content,
                 post_tags
                 ) VALUES (
-                    $post_cat_id, 
-                    '$post_title', 
-                    '$post_author', 
-                    now(), 
-                    '$post_img', 
-                    '$post_content', 
+                    $post_cat_id,
+                    '$post_title',
+                    '$post_author',
+                    now(),
+                    '$post_img',
+                    '$post_content',
                     '$post_tags'
                     );";
             $query = mysqli_query($con, $sql);
@@ -231,7 +230,7 @@
             } else {
                 echo "<p class='bg-success'>Publish successfully!</p>";
             }
-            
+
         }
     }
 
@@ -252,7 +251,7 @@
     }
 
     /**************************
-     * 
+     *
      *  COMMENTS
      *
      * ******************************/
@@ -288,7 +287,7 @@
                 $post_title = $row['post_title'];
                 echo "<td><a href='../post.php?post_id=$post_id'>$post_title</a></td>";
             }
-            
+
             echo "<td>$comment_date</td>";
             // echo "<td><a href='posts.php?source=edit_post&post_id={$post_id}' class='btn btn-success'>Approve</a></td>";
             // echo "<td><a href='posts.php?delete={$post_id}' class='btn btn-danger'>Unapprove</a></td>";
@@ -314,9 +313,9 @@
     }
 
     /******************
-     * 
-     * Users 
-     * 
+     *
+     * Users
+     *
      ********************/
     function load_users() {
         global $con;
@@ -342,7 +341,7 @@
             echo "<td>$user_firstname</td>";
             echo "<td>$user_lastname</td>";
             echo "<td>$user_email</td>";
-            echo "<td>$user_role</td>";
+            // echo "<td>$user_role</td>";
             echo "<td>$reg_time</td>";
             echo "
                 <td>
@@ -374,7 +373,7 @@
             move_uploaded_file($user_img_temp, "../images/profile/$user_img");
 
             $reg_time = date('d-m-y');
-    
+
             $sql = "INSERT INTO $table_users (
                 username,
                 password,
@@ -385,12 +384,12 @@
                 user_img,
                 reg_time
                 ) VALUES (
-                    '$username', 
-                    '$md5_new', 
-                    '$user_firstname', 
-                    '$user_lastname', 
+                    '$username',
+                    '$md5_new',
+                    '$user_firstname',
+                    '$user_lastname',
                     '$user_email',
-                    '$user_role',
+                    '1',
                     '$user_img',
                     now()
                     );";
@@ -400,7 +399,7 @@
             } else {
                 echo "<p class='bg-success'>A new user is created successfully! <a href='users.php'>View Users</a></p>";
             }
-            
+
         }
     }
 
@@ -421,6 +420,6 @@
     }
 
 
-    
+
 
 ?>

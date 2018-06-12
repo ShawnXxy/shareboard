@@ -29,10 +29,10 @@
                         // $post_comment_count = $row['post_comment_count'];
                         // $post_views_count = $row['post_views_count'];
                     ?>
-                        <h1 class="page-header">
+                        <!-- <h1 class="page-header">
                             Page Heading
                             <small>Secondary Text</small>
-                        </h1>
+                        </h1> -->
 
                         <!-- Blog Post -->
                         <h2>

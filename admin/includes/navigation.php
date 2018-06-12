@@ -8,14 +8,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">CMS Admin</a>
+                <a class="navbar-brand" href="index.php">ShareBoard Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                
+
                 <li><a href="">Users Online: <span class="usersonline"></span></a></li>
                 <li><a href="../index.php">Home</a></li>
-                
 
                 <!-- message dropdown menu -->
                 <!-- <li class="dropdown">
@@ -69,8 +68,9 @@
                         </li>
                     </ul>
                 </li>
-                
+
             </ul>
+
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
@@ -90,35 +90,49 @@
                         <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
                     </li> -->
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Posts<i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-clipboard"></i> Posts<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="posts_dropdown" class="collapse">
+
                             <li>
                                 <a href="./posts.php">View All Posts</a>
                             </li>
+
                             <li>
                                 <a href="posts.php?source=add_post">Add Posts</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Categories</a>
-                    </li>
-                    <li class="active">
-                        <a href="./comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Users<i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                    <?php
+                        if ($_SESSION['user_role'] == 0) {
+                    ?>
                             <li>
-                                <a href="./users.php">View All Users</a>
+                                <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Categories</a>
                             </li>
-                            <li>
-                                <a href="users.php?source=add_user">Add Users</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php
+                        }
+                    ?>
                     <li class="active">
-                        <a href="./profile.php"><i class="fa fa-fw fa-file"></i> Profile</a>
+                        <a href="./comments.php"><i class="fa fa-fw fa-comments"></i> Comments</a>
+                    </li>
+                    <?php
+                        if ($_SESSION['user_role'] == 0) {
+                    ?>
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Users<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="demo" class="collapse">
+                                    <li>
+                                        <a href="./users.php">View All Users</a>
+                                    </li>
+                                    <li>
+                                        <a href="users.php?source=add_user">Add Users</a>
+                                    </li>
+                                </ul>
+                            </li>
+                    <?php
+                        }
+                    ?>
+                    <li class="active">
+                        <a href="./profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
                 </ul>
             </div>

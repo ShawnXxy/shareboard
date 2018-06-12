@@ -85,7 +85,7 @@
 
                         <div class="form-group">
                             <label for="user_img">User's Profile</label>
-                            <img class="img-responsive" src="../images/profile/<?php echo $cur_user_img; ?>" alt="" width-"100" height="100">
+                            <img class="img-responsive" src="../images/profile/<?php echo $cur_user_img; ?>" alt="" width="200" height="200">
                             <input type="file" name="user_img">
                         </div>
 
@@ -112,15 +112,6 @@
                         <div class="form-group">
                             <label for="user_email">Email</label>
                             <input type="email" class="form-control" name="user_email" value="<?php echo $cur_user_email; ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="user_role">Role : <?php echo $cur_user_role; ?></label>
-                            <select name="user_role">
-                                <option value="subscriber">Select Role</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Subscriber">Subscriber</option>
-                            </select>
                         </div>
 
                         <div class="form-group">

@@ -89,7 +89,7 @@
 
     <div class="form-group">
         <label for="post_img">Post Image</label>
-        <img class="img-responsive" src="../images/<?php echo $post_img; ?>" alt="" width-"100" height="100">
+        <img class="img-responsive" src="../images/<?php echo $post_img; ?>" alt="" width="100" height="100">
         <input type="file" name="post_img">
     </div>
 
