@@ -18,7 +18,7 @@
 
                     $sql = "SELECT * FROM $table_posts WHERE post_id = $cur_post_id;";
                     $query = mysqli_query($con, $sql);
-                    
+
                     while ($row = mysqli_fetch_assoc($query)) {
                         $post_title = $row['post_title'];
                         $post_author = $row['post_author'];
@@ -46,7 +46,10 @@
                         <img class="img-responsive" src="images/<?php echo $post_img; ?>" alt="">
                         <hr>
                         <p><?php echo $post_content; ?></p>
-                        <a class="btn btn-primary" href="index.php">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <!-- weibo share -->
+                        <wb:share-button appkey="959720788" addition="simple" type="icon" ralateUid="1700595130"></wb:share-button>
+                        <br>
+                        <a class="btn btn-primary" href="index.php">Go back <<< </a>
 
                         <hr>
                     <?php
@@ -56,24 +59,24 @@
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
-                <?php 
+                <?php
                     if (isset($_POST['create_comment'])) {
                         $cur_post_id = $_GET['post_id'];
                         $comment_author = mysqli_real_escape_string($con, $_POST['comment_author']);
                         $comment_email = mysqli_real_escape_string($con, $_POST['comment_email']);
                         $comment_content = mysqli_real_escape_string($con, $_POST['comment_content']);
-            
+
                         $sql = "INSERT INTO $table_comments (
-                                comment_post_id, 
+                                comment_post_id,
                                 comment_author,
                                 comment_email,
                                 comment_content,
                                 comment_date
                             ) VALUES (
                                 $cur_post_id,
-                                '$comment_author', 
+                                '$comment_author',
                                 '$comment_email',
-                                '$comment_content', 
+                                '$comment_content',
                                 now()
                             );";
                         $query = mysqli_query($con, $sql);
@@ -103,7 +106,7 @@
                         <button type="submit" class="btn btn-success" name="create_comment">Submit</button>
                     </form>
                 </div>
-                
+
 
                 <hr>
 
@@ -160,5 +163,3 @@
         <?php
             include 'includes/footer.php';
         ?>
-
-        

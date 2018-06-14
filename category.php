@@ -18,7 +18,7 @@
 
                     $sql = "SELECT * FROM $table_posts WHERE post_cat_id = $cur_post_cat_id;";
                     $query = mysqli_query($con, $sql);
-                    
+
                     while ($row = mysqli_fetch_assoc($query)) {
                         $post_id = $row['post_id'];
                         $post_title = mysqli_real_escape_string($con, $row['post_title']);
@@ -27,10 +27,10 @@
                         $post_img = $row['post_img'];
                         $post_content = substr(mysqli_real_escape_string($con, $row['post_content']), 0, 200);
                     ?>
-                        <h1 class="page-header">
+                        <!-- <h1 class="page-header">
                             Page Heading
                             <small>Secondary Text</small>
-                        </h1>
+                        </h1> -->
 
                         <!-- Blog Post -->
                         <h2>
@@ -75,5 +75,3 @@
         <?php
             include 'includes/footer.php';
         ?>
-
-        
