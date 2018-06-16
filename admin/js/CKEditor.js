@@ -1,5 +1,5 @@
 
-// CKEditor5
+// CKEditor5 classic
 $(document).ready(function() {
     ClassicEditor
         .create( document.querySelector( '#editor' ) )

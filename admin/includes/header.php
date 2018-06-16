@@ -52,8 +52,10 @@
 
     <script src="./js/jquery.js"></script>
 
-    <!-- CKEditor 5 -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+    <!-- CKEditor 5 classic-->
+    <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js"></script>
+    <!-- CKeditor5 document -->
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/decoupled-document/ckeditor.js"></script> -->
 </head>
 
 <body>

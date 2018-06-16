@@ -42,13 +42,13 @@
             }
         }
 
-        $sql_update_post = "UPDATE $table_posts SET 
-            post_cat_id = '$post_cat_id', 
-            post_title = '$post_title', 
-            post_author = '$post_author', 
-            post_date = now(), 
-            post_content = '$post_content', 
-            post_tags = '$post_tags', 
+        $sql_update_post = "UPDATE $table_posts SET
+            post_cat_id = '$post_cat_id',
+            post_title = '$post_title',
+            post_author = '$post_author',
+            post_date = now(),
+            post_content = '$post_content',
+            post_tags = '$post_tags',
             post_img = '$post_img'
             WHERE post_id = $edit_post_id;
             ";
@@ -84,7 +84,7 @@
 
     <div class="form-group">
         <label for="post_author">Post Author</label>
-        <input type="text" class="form-control" name="post_author" value="<?php echo $post_author; ?>" required>
+        <input type="text" class="form-control" name="post_author" value="<?php echo $_SESSION['username']; ?>" disabled="true">
     </div>
 
     <div class="form-group">
@@ -100,7 +100,32 @@
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="editor" cols="30" rows="10" ><?php echo $post_content; ?></textarea>
+        <textarea class="" name="post_content" id="editor" cols="30" rows="50" style="display:flex; flex-flow:column nowrap; overflow:auto;"><?php echo $post_content; ?></textarea>
+        <script type="text/javascript">
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                });
+        </script>
+
+        <!-- CKeditor5 Document style -->
+        <!-- <div class="" id="toolbar-container"></div>
+        <div class="" id="editor" style="height:500px; display:flex; flex-flow:column nowrap; overflow:auto;">
+            <input name="post_content"></textarea>
+        </div>
+        <script>
+            DecoupledEditor
+                .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                    const toolbarContainer = document.querySelector( '#toolbar-container' );
+
+                    toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script> -->
     </div>
 
     <div class="form-group">

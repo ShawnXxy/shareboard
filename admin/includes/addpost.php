@@ -6,7 +6,7 @@
         <label for="post_title">Post Title</label>
         <input type="text" class="form-control" name="post_title" required>
     </div>
-    
+
     <div class="form-group">
         <label for="post_cat">Category</label>
         <select name="post_cat_id" id="">
@@ -27,7 +27,7 @@
         <input type="text" class="form-control" name="post_author" value="<?php echo $_SESSION['username']; ?>" disabled="true">
     </div>
 
-    <div class="form-group"> 
+    <div class="form-group">
         <label for="post_img">Post Image</label>
         <input type="file" name="post_img">
     </div>
@@ -39,7 +39,32 @@
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="editor" cols="30" rows="150"></textarea>
+
+        <textarea class="form-control" name="post_content" id="editor" cols="30" rows="50"></textarea>
+        <script type="text/javascript">
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                });
+        </script>
+
+        <!-- CKeditor5 Document style -->
+        <!-- <div class="" id="toolbar-container"></div>
+        <div name="post_content" class="form-control" id="editor" cols="30" rows="20" style="height:500px; display:flex; flex-flow:column nowrap; overflow:auto;">
+        </ >
+        <script>
+            DecoupledEditor
+                .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                    const toolbarContainer = document.querySelector( '#toolbar-container' );
+
+                    toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script> -->
     </div>
 
     <div class="form-group">
