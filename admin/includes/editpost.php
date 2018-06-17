@@ -1,16 +1,16 @@
 <?php
     if (isset($_GET['post_id'])) {
-        $edit_post_id = $_GET['post_id'];
+        $cur_post_id = $_GET['post_id'];
     }
 
-    $sql = "SELECT * FROM $table_posts WHERE post_id = $edit_post_id;";
+    $sql = "SELECT * FROM $table_posts WHERE post_id = $cur_post_id;";
     $query = mysqli_query($con, $sql);
     if (!$query) {
         die('Query Failed ! ' . mysqli_error($con));
     }
 
     while ($row = mysqli_fetch_assoc($query)) {
-        $edit_post_id = $row['post_id'];
+        $post_id = $row['post_id'];
         $post_author = $row['post_author'];
         $post_title = $row['post_title'];
         $post_cat_id = $row['post_cat_id'];
@@ -35,28 +35,29 @@
 
         move_uploaded_file($post_img_temp, "../images/$post_img");
         if (empty($post_img)) {
-            $sql = "SELECT * FROM $table_posts WHERE post_id = $edit_post_id;";
+            $sql = "SELECT * FROM $table_posts WHERE post_id = $cur_post_id;";
             $query = mysqli_query($con, $sql);
             while($row = mysqli_fetch_array($query)) {
                 $post_img = $row['post_img'];
             }
         }
 
+        $cur_author = $_SESSION['username'];
         $sql_update_post = "UPDATE $table_posts SET
             post_cat_id = '$post_cat_id',
             post_title = '$post_title',
-            post_author = '$post_author',
+            post_author = '$cur_author',
             post_date = now(),
             post_content = '$post_content',
             post_tags = '$post_tags',
             post_img = '$post_img'
-            WHERE post_id = $edit_post_id;
+            WHERE post_id = $cur_post_id;
             ";
         $query_update_post = mysqli_query($con, $sql_update_post);
         if (!$query_update_post) {
             die('Query Failed ! ' . mysqli_error($con));
         } else {
-            echo "<p class='bg-success'>Updated successfully!</p>";
+            echo "<p class='bg-success'>Updated successfully! <a href='../post.php?post_id=$post_id' target='_blank'>View</a></p>";
         }
     }
 

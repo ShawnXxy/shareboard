@@ -228,7 +228,8 @@
             if (!$query) {
                 die("Query failed!" . mysqli_error($con));
             } else {
-                echo "<p class='bg-success'>Publish successfully!</p>";
+                $post_id = mysqli_insert_id($con);
+                echo "<p class='bg-success'>Publish successfully! <a href='../post.php?post_id=$post_id' target='_blank'>View</a></p>";
             }
 
         }

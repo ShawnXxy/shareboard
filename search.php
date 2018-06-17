@@ -22,13 +22,14 @@
                         if (!$search_query) {
                             die("Query failed" . mysqli_error($con));
                         }
-        
+
                         $count = mysqli_num_rows($search_query);
                         if ($count == 0) {
                             echo "<h1>NO RESULT!</h1>";
                         } else {
-                            
+
                             while ($row = mysqli_fetch_assoc($search_query)) {
+                                $post_id = $row['post_id'];
                                 $post_title = $row['post_title'];
                                 $post_author = $row['post_author'];
                                 $post_date = $row['post_date'];
@@ -38,10 +39,10 @@
                                 // $post_comment_count = $row['post_comment_count'];
                                 // $post_views_count = $row['post_views_count'];
                             ?>
-                                <h1 class="page-header">
+                                <!-- <h1 class="page-header">
                                     Page Heading
                                     <small>Secondary Text</small>
-                                </h1>
+                                </h1> -->
 
                                 <!-- Blog Post -->
                                 <h2>
@@ -55,12 +56,12 @@
                                 <img class="img-responsive" src="images/<?php echo $post_img; ?>" alt="">
                                 <hr>
                                 <p><?php echo $post_content; ?></p>
-                                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                                <a class="btn btn-primary" href="post.php?post_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                                 <hr>
                             <?php
                             }
-                
+
                         }
                     }
                 ?>
@@ -83,5 +84,3 @@
         <hr>
 
         <?php  include 'includes/footer.php'; ?>
-
-        
