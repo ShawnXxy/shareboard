@@ -142,6 +142,7 @@
      * Post
      *
      ********************/
+
     function load_posts() {
         global $con;
         global $table_posts;

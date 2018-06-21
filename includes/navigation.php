@@ -1,5 +1,5 @@
 <?php
-    include 'includes/config.php';
+    include 'config.php';
 
     session_start();
 
@@ -89,7 +89,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['user_firstname'] . " " . $_SESSION['user_lastname']; ?> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="./admin"><i class="fa fa-fw fa-wrench"></i> Admin</a> 
+                                        <a href="./admin"><i class="fa fa-fw fa-wrench"></i> Admin</a>
                                     </li>
                                     <li>
                                         <a href="./admin/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>

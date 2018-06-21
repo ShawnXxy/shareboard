@@ -14,7 +14,7 @@
                 <?php
                     $sql = "SELECT * FROM $table_posts ORDER BY post_date DESC;";
                     $query = mysqli_query($con, $sql);
-                    
+
                     while ($row = mysqli_fetch_assoc($query)) {
                         $post_id = $row['post_id'];
                         $post_title = mysqli_real_escape_string($con, $row['post_title']);
@@ -36,7 +36,7 @@
                             <a href='post.php?post_id=<?php echo $post_id; ?>'><?php echo $post_title; ?></a>
                         </h2>
                         <p class="lead">
-                            by <a href="index.php"><?php echo $post_author; ?></a>
+                            by <a href="http://shawnxxy.site" target="_blank"><?php echo $post_author; ?></a>
                         </p>
                         <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
                         <hr>
@@ -74,5 +74,3 @@
         <?php
             include 'includes/footer.php';
         ?>
-
-        
