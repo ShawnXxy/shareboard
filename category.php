@@ -16,7 +16,7 @@
                         $cur_post_cat_id = $_GET['category'];
                     }
 
-                    $sql = "SELECT * FROM $table_posts WHERE post_cat_id = $cur_post_cat_id;";
+                    $sql = "SELECT * FROM $table_posts WHERE post_type = 1 AND post_cat_id = $cur_post_cat_id ORDER BY post_date DESC;";
                     $query = mysqli_query($con, $sql);
 
                     while ($row = mysqli_fetch_assoc($query)) {
@@ -33,6 +33,7 @@
                         </h1> -->
 
                         <!-- Blog Post -->
+                        <div class="col-md-12">
                         <h2>
                             <a href="post.php?post_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                         </h2>
@@ -47,6 +48,7 @@
                         <a class="btn btn-primary" href="post.php?post_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                         <hr>
+                    </div>
                     <?php
                     }
                 ?>

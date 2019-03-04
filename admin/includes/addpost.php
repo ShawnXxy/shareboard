@@ -68,6 +68,14 @@
     </div>
 
     <div class="form-group">
+        <label for="post_type">Draft</label>
+        <select name="post_type" id="">
+            <option value="0">Private</option>
+            <option value="1">Public</option>
+        </select>
+    </div>
+
+    <div class="form-group">
         <input type="submit" class="btn btn-success" name="publish_post" value="Publish">
     </div>
 </form>

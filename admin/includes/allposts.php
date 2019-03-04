@@ -6,6 +6,7 @@
             <th>Title</th>
             <th>Category</th>
             <th>Image</th>
+            <th>Published</th>
             <th>Tags</th>
             <th>Comments</th>
             <th>Date</th>
@@ -19,4 +20,3 @@
 </table>
 
 <?php delete_post(); ?>
-    

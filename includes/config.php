@@ -22,7 +22,7 @@
      *********************************/
     $table_cat = 'categories';
     $table_posts = 'posts';
-    $table_comments = 'comments';
+    $table_comments = 'comm';
     $table_users = 'users';
     $table_usersOnline = "users_online";
 
@@ -30,7 +30,7 @@
     $sql = "CREATE TABLE $table_cat (
         cat_id INT(8) AUTO_INCREMENT PRIMARY KEY,
         cat_title VARCHAR(255) NOT NULL
-    );";
+    ) ENGINE=INNODB DEFAULT CHARSET=utf8;";
     mysqli_query($db, $sql);
 
     // blog posts
@@ -40,12 +40,13 @@
         post_title VARCHAR(255) NOT NULL,
         post_author VARCHAR(255) NOT NULL,
         post_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-        post_img TEXT,
+        post_img TEXT(255),
         post_content TEXT NOT NULL,
+        post_type INT(3),
         post_tags VARCHAR(255),
         post_comment_count INT(11),
         post_views_count INT(11)
-    );";
+    ) ENGINE=INNODB DEFAULT CHARSET=utf8;";
     mysqli_query($db, $sql);
 
     // Comments
@@ -56,7 +57,7 @@
         comment_email VARCHAR(255),
         comment_content TEXT,
         comment_date DATETIME DEFAULT CURRENT_TIMESTAMP
-    );";
+    ) ENGINE=INNODB DEFAULT CHARSET=utf8;";
     mysqli_query($db, $sql);
 
     // USERS
@@ -71,7 +72,7 @@
         user_img TEXT,
         user_posts VARCHAR(255),
         reg_time DATETIME DEFAULT CURRENT_TIMESTAMP
-    );";
+    ) ENGINE=INNODB DEFAULT CHARSET=utf8;";
     mysqli_query($db, $sql);
 
     // Users online
@@ -79,7 +80,7 @@
         id INT(11) AUTO_INCREMENT PRIMARY KEY,
         session VARCHAR(255) NOT NULL,
         time INT(11) NOT NULL
-    );";
+    ) ENGINE=INNODB DEFAULT CHARSET=utf8;";
     mysqli_query($db, $sql);
 
     /*************************************

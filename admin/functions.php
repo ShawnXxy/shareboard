@@ -157,6 +157,7 @@
             $post_title = $row['post_title'];
             $post_cat_id = $row['post_cat_id'];
             $post_img = $row['post_img'];
+            $post_type = $row['post_type'];
             $post_tags = $row['post_tags'];
             // $post_views_count = $row['post_views_count'];
             $post_comment_count = $row['post_comment_count'];
@@ -176,7 +177,8 @@
                 echo "<td>$cat_title</td>";
             }
 
-            echo "<td><img class='img-responsive' src='../images/$post_img' alt='test-image' width='100' height='100'></td>";
+            echo "<td><img class='img-responsive' src='../images/$post_img' alt='post-image' width='100' height='100'></td>";
+            echo "<td>$post_type</td>";
             echo "<td>$post_tags</td>";
             // echo "<td>{$post_views_count}</td>";
             echo "<td>$post_comment_count</td>";
@@ -206,6 +208,7 @@
 
             $post_tags = $_POST['post_tags'];
             $post_content = mysqli_real_escape_string($con, $_POST['post_content']);
+            $post_type = $_POST['post_type'];
             $post_date = date('d-m-y');
 
             $sql = "INSERT INTO $table_posts (
@@ -215,6 +218,7 @@
                 post_date,
                 post_img,
                 post_content,
+                post_type,
                 post_tags
                 ) VALUES (
                     $post_cat_id,
@@ -223,6 +227,7 @@
                     now(),
                     '$post_img',
                     '$post_content',
+                    '$post_type',
                     '$post_tags'
                     );";
             $query = mysqli_query($con, $sql);

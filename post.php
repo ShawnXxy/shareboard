@@ -25,10 +25,10 @@
                         $post_date = $row['post_date'];
                         $post_img = $row['post_img'];
                         $post_content = $row['post_content'];
-                        // $post_tags = $row['post_tags'];
+                        $post_tags = $row['post_tags'];
                         // $post_comment_count = $row['post_comment_count'];
                         // $post_views_count = $row['post_views_count'];
-                    ?>
+                ?>
                         <!-- <h1 class="page-header">
                             Page Heading
                             <small>Secondary Text</small>
@@ -36,7 +36,7 @@
 
                         <!-- Blog Post -->
                         <h2>
-                            <a href="#"><?php echo $post_title; ?></a>
+                            <a href="#"><?php echo "[" . $post_tags . "]" . " " . $post_title; ?></a>
                         </h2>
                         <p class="lead">
                             by <a href="index.php"><?php echo $post_author; ?></a>
@@ -48,9 +48,23 @@
                         <p><?php echo $post_content; ?></p>
                         <!-- weibo share -->
                         <wb:share-button appkey="959720788" addition="simple" type="icon" ralateUid="1700595130"></wb:share-button>
+                        <!-- <fb:like></fb:like> -->
+                        <!-- <br> -->
+                        <!-- <fb:like width="200" show_faces="yes" href="http://www.fbrell.com"></fb:like> -->
+                        <!-- <br> -->
+                        <!-- fb share -->
+                        <!-- <div id="shareBtn" class="btn btn-success clearfix">Share</div>
+                        <script>
+                        document.getElementById('shareBtn').onclick = function() {
+                          FB.ui({
+                            method: 'share',
+                            display: 'popup',
+                            href: 'https://developers.facebook.com/docs/',
+                          }, function(response){});
+                        }
+                        </script> -->
                         <br>
                         <a class="btn btn-primary" href="index.php">Go back <<< </a>
-
                         <hr>
                     <?php
                     }
@@ -59,45 +73,47 @@
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
+                <!-- FB comments -->
+                <div class="fb-comments" data-href='http://www.shawnxxy.site/shareboard/post.php?post_id=<?php echo $cur_post_id;?>' data-width="100%" data-numposts="10"></div>
+
                 <?php
-                    if (isset($_POST['create_comment'])) {
-                        $cur_post_id = $_GET['post_id'];
-                        $comment_author = mysqli_real_escape_string($con, $_POST['comment_author']);
-                        $comment_email = mysqli_real_escape_string($con, $_POST['comment_email']);
-                        $comment_content = mysqli_real_escape_string($con, $_POST['comment_content']);
-
-                        $sql = "INSERT INTO $table_comments (
-                                comment_post_id,
-                                comment_author,
-                                comment_email,
-                                comment_content,
-                                comment_date
-                            ) VALUES (
-                                $cur_post_id,
-                                '$comment_author',
-                                '$comment_email',
-                                '$comment_content',
-                                now()
-                            );";
-                        $query = mysqli_query($con, $sql);
-                        if (!$query) {
-                            die('Query failed ! ' . mysqli_error());
-                        }
-
-                        // Get comment count
-                        $sql_get_comment_count = "UPDATE $table_posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $cur_post_id;";
-                        mysqli_query($con, $sql_get_comment_count);
-                    }
+                    // if (isset($_POST['create_comment'])) {
+                    //     $cur_post_id = $_GET['post_id'];
+                    //     $comment_author = mysqli_real_escape_string($con, $_POST['comment_author']);
+                    //     $comment_email = mysqli_real_escape_string($con, $_POST['comment_email']);
+                    //     $comment_content = mysqli_real_escape_string($con, $_POST['comment_content']);
+                    //
+                    //     $sql = "INSERT INTO $table_comments (
+                    //             comment_post_id,
+                    //             comment_author,
+                    //             comment_email,
+                    //             comment_content,
+                    //             comment_date
+                    //         ) VALUES (
+                    //             $cur_post_id,
+                    //             '$comment_author',
+                    //             '$comment_email',
+                    //             '$comment_content',
+                    //             now()
+                    //         );";
+                    //     $query = mysqli_query($con, $sql);
+                    //     if (!$query) {
+                    //         die('Query failed ! ' . mysqli_error());
+                    //     }
+                    //
+                    //     // Get comment count
+                    //     $sql_get_comment_count = "UPDATE $table_posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $cur_post_id;";
+                    //     mysqli_query($con, $sql_get_comment_count);
+                    // }
                 ?>
-                <div class="well">
+
+                <!-- <div class="well">
                     <h4>Leave a Comment:</h4>
                     <form role="form" action="" method="post">
                         <div class="form-group">
-                            <!-- <label for="comment_author">Name</label> -->
                             <input type="text" class="form-control" name="comment_author" placeholder="Name" required>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="comment_email">Email</label> -->
                             <input type="email" class="form-control" name="comment_email" placeholder="Email">
                         </div>
                         <div class="form-group">
@@ -105,7 +121,7 @@
                         </div>
                         <button type="submit" class="btn btn-success" name="create_comment">Submit</button>
                     </form>
-                </div>
+                </div> -->
 
 
                 <hr>

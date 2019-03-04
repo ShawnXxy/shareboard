@@ -14,10 +14,12 @@
                 <?php
                     if (isset($_POST['submit'])) {
                         $search = $_POST['search'];
-                        $sql = "SELECT * FROM $table_posts WHERE post_tags LIKE '%$search%'
+                        $sql = "SELECT * FROM $table_posts WHERE post_type = 1
+                            AND post_tags LIKE '%$search%'
                             OR post_title LIKE '%$search%'
                             OR post_author LIKE '%$search%'
-                            OR post_content LIKE '%$search%';";
+                            OR post_content LIKE '%$search%'
+                            ORDER BY post_date DESC;";
                         $search_query = mysqli_query($con, $sql);
                         if (!$search_query) {
                             die("Query failed" . mysqli_error($con));

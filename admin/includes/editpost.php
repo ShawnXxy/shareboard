@@ -19,7 +19,6 @@
         $post_tags = $row['post_tags'];
         $post_comment_count = $row['post_comment_count'];
         // $post_date = $row['post_date'];
-
     }
 
     if (isset($_POST['edit_post'])) {
@@ -32,6 +31,7 @@
 
         $post_tags = $_POST['post_tags'];
         $post_content = mysqli_real_escape_string($con, $_POST['post_content']);
+        $post_type = $_POST['post_type'];
 
         move_uploaded_file($post_img_temp, "../images/$post_img");
         if (empty($post_img)) {
@@ -47,8 +47,8 @@
             post_cat_id = '$post_cat_id',
             post_title = '$post_title',
             post_author = '$cur_author',
-            post_date = now(),
             post_content = '$post_content',
+            post_type = $post_type,
             post_tags = '$post_tags',
             post_img = '$post_img'
             WHERE post_id = $cur_post_id;
@@ -72,7 +72,7 @@
         <label for="post_cat">Category</label>
         <select name="post_cat_id" id="">
             <?php
-                $sql = "SELECT * FROM $table_cat;";
+                $sql = "SELECT cat_id, cat_title FROM $table_cat;";
                 $query = mysqli_query($con, $sql);
                 while ($row = mysqli_fetch_assoc($query)) {
                     $cat_id = $row['cat_id'];
@@ -127,6 +127,14 @@
                     console.error( error );
                 } );
         </script> -->
+    </div>
+
+    <div class="form-group">
+        <label for="post_type">Draft</label>
+        <select name="post_type" id="">
+            <option value="0">Private</option>
+            <option value="1">Public</option>
+        </select>
     </div>
 
     <div class="form-group">
